@@ -1,0 +1,106 @@
+/* Hallmark · shape: stack + index · genre: editorial · theme: custom · job: hire · idea: "Код на ділянці: кожен будинок «Лайфбуд» — код і площа на генплані" · vibe: "лаймові ділянки, графітові дороги, великі коди" · paper: #FFFFFF + #D8EA7A · accent: #B1E60E (тільки на графіті) · display: Geologica · body: Sofia Sans · hero: "H1 на лаймовому полі, фото К-76 стоїть на межі лайму й білого" · nav: graphite bar · footer: graphite, all channels · imagery: client photos · signature: генплан КМ «Сонячний» з підсвіткою ділянки · axes: light/grotesk-heavy/chromatic-lime · posture: committed · surface: absolute · contrast: pass · fold: pass · v2.0.0 */
+/* Hallmark · pre-emit critique: P4 H4 E4 S5 R4 V4 · weakest: E (projects mosaic risks a card grid), answered with a 7/5 rhythm, codes set large and no card chrome */
+/* Hallmark · waive 7b · paper #FFFFFF is the concept.md §5.3 base · approved client concept pairs white plots with lime fields; Viber and Telegram buttons and the home photos sit on pure white as on the brand plan */
+/* Hallmark · waive 44c · first screen at 1440x900 ends near 1034px because the K-76 photo crosses the fold · concept.md §5.6 keeps the photo of К-76 standing on the lime plot line and running below the fold as the scroll signal; H1, lead and the call button stay above it */
+/* Client design tokens from design/concept.md (veon-concept: colors, fonts). Breakpoints: 480 / 768 / 1024 / 1280 px (media queries use these numbers). */
+
+@font-face {
+  font-family: "Geologica";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/geologica-cyrillic.woff2") format("woff2-variations"), url("/fonts/geologica-cyrillic.woff2") format("woff2");
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: "Geologica";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/geologica-latin.woff2") format("woff2-variations"), url("/fonts/geologica-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Sofia Sans";
+  font-style: normal;
+  font-weight: 1 1000;
+  font-display: swap;
+  src: url("/fonts/sofia-sans-cyrillic.woff2") format("woff2-variations"), url("/fonts/sofia-sans-cyrillic.woff2") format("woff2");
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: "Sofia Sans";
+  font-style: normal;
+  font-weight: 1 1000;
+  font-display: swap;
+  src: url("/fonts/sofia-sans-latin.woff2") format("woff2-variations"), url("/fonts/sofia-sans-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* Metric fallbacks: keep line breaks close while the web fonts load */
+@font-face { font-family: "Geologica Fallback"; src: local("Arial"); size-adjust: 104%; ascent-override: 92%; descent-override: 24%; }
+@font-face { font-family: "Sofia Sans Fallback"; src: local("Arial"); size-adjust: 90%; ascent-override: 100%; descent-override: 26%; }
+
+:root {
+  /* palette (concept.md §5.3) */
+  --color-lime: #D8EA7A;        /* поле-ділянка: hero, build, табличка */
+  --color-accent: #B1E60E;      /* дія на графіті: кнопка, фокус, підсвітка ділянки. Ніколи на білому й лаймі */
+  --color-graphite: #2D2D2D;    /* текст, шапка, houses, contacts, футер */
+  --color-white: #FFFFFF;
+  --color-gray: #EFEFEF;        /* плашка форми, неактивна кнопка */
+  --color-muted: #55594C;       /* вторинний текст на світлому */
+  --color-muted-dark: #B9BCAF;  /* вторинний текст на графіті */
+  --color-plate: #3A3A3A;       /* плашка на графіті */
+  --color-bg: var(--color-white);
+  --color-accent-ink: var(--color-graphite);  /* text on #B1E60E, 9,31:1 */
+  --color-text: var(--color-graphite);
+  --color-plot-fill: color-mix(in srgb, var(--color-accent) 28%, transparent);
+  --color-scrim: color-mix(in srgb, var(--color-graphite) 92%, transparent);
+
+  /* type (concept.md §5.4) */
+  --font-display: "Geologica", "Geologica Fallback", system-ui, sans-serif;
+  --font-body: "Sofia Sans", "Sofia Sans Fallback", system-ui, sans-serif;
+  --fs-h1: clamp(1.75rem, 8.6vw, 5.5rem);
+  --fs-h2: clamp(1.875rem, 1.25rem + 2.6vw, 3.25rem);
+  --fs-h3: clamp(1.5rem, 1.25rem + 1vw, 2rem);
+  --fs-lead: clamp(1.0625rem, 1rem + .35vw, 1.25rem);
+  --fs-body: clamp(1rem, .96rem + .15vw, 1.0625rem);
+  --fs-small: .875rem;
+  --lh-h1: .98;
+  --lh-h2: 1.05;
+  --lh-h3: 1.1;
+  --sharp: "SHRP" 100;
+
+  /* space: step 4/8 (concept.md §5.5) */
+  --s-1: 8px;
+  --s-2: 16px;
+  --s-3: 24px;
+  --s-4: 32px;
+  --s-5: 48px;
+  --s-6: 72px;
+  --s-7: 112px;
+  --s-8: 160px;
+  --space: clamp(16px, 1.2rem + 2.6vw, 64px);   /* page margin: 16 at 320, 20 at 390, 64 at 1440 */
+  --gutter: clamp(12px, .5rem + 1vw, 24px);
+  --section-y: clamp(72px, 3.5rem + 4vw, 112px);
+  --container: 1312px;
+  --header-h: 56px;
+  --bar-h: 64px;
+  --tap: 44px;
+  --btn-h: 52px;
+
+  /* shape */
+  --radius: 2px;
+  --line: 2px;
+
+  /* motion (concept.md §5.9) */
+  --ease-out: cubic-bezier(.2, .7, .2, 1);
+  --dur: 600ms;
+  --dur-fast: 200ms;
+  --dur-photo: 700ms;
+}
+@media (min-width: 768px) {
+  :root { --header-h: 72px; --dur-photo: 700ms; }
+}
+@media (max-width: 767px) {
+  :root { --dur-photo: 500ms; }
+}

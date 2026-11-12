@@ -1,0 +1,58 @@
+---
+import { Image } from "astro:assets";
+import FutureLink from "./FutureLink.astro";
+import Icon from "./Icon.astro";
+import logoLight from "../assets/img/logo-light.png";
+import { TEL, PHONE_SHOWN, VIBER, TELEGRAM, WHATSAPP, MAILTO, EMAIL, ADDRESS, INSTAGRAM, FACEBOOK } from "../data/site";
+---
+<footer class="footer on-dark" data-rec="R-012,S-R008">
+  <div class="container footer__in">
+    <a class="footer__logo" href="#top" aria-label="Лайфбуд, на початок сторінки">
+      <Image src={logoLight} alt="" width={200} height={72} data-rec="R-004" />
+    </a>
+    <ul class="footer__channels" aria-label="Канали зв'язку">
+      <li><a href={TEL}><Icon name="phone" />{PHONE_SHOWN}</a></li>
+      <li><a href={VIBER}><Icon name="viber" />Viber</a></li>
+      <li><a href={WHATSAPP}><Icon name="whatsapp" />WhatsApp</a></li>
+      <li><a href={TELEGRAM}><Icon name="telegram" />Telegram</a></li>
+      <li><a href={MAILTO}><Icon name="mail" />{EMAIL}</a></li>
+    </ul>
+    <div class="footer__side">
+      <p class="footer__addr">{ADDRESS}</p>
+      <ul class="footer__social">
+        <li><a href={INSTAGRAM} target="_blank" rel="noopener noreferrer"><Icon name="instagram" />Instagram</a></li>
+        <li><a href={FACEBOOK} target="_blank" rel="noopener noreferrer"><Icon name="facebook" />Facebook</a></li>
+      </ul>
+    </div>
+    <div class="footer__legal">
+      <p>©2017–2026 Лайфбуд</p>
+      <FutureLink note="Розділ у розробці" class="fl-quiet">Політика конфіденційності</FutureLink>
+    </div>
+  </div>
+</footer>
+<style>
+  .footer { background: var(--color-graphite); border-top: 1px solid var(--color-plate); padding-block: var(--s-5); font-size: var(--fs-small); }
+  .footer__in { display: grid; gap: var(--s-4); grid-template-columns: minmax(0, 1fr); }
+  .footer__logo { display: inline-flex; align-items: flex-start; width: fit-content; }
+  .footer__logo :global(img) { width: 150px; height: auto; align-self: flex-start; }
+  ul { list-style: none; margin: 0; padding: 0; }
+  .footer__channels { display: grid; gap: 4px; }
+  .footer__channels a, .footer__social a {
+    display: inline-flex; align-items: center; gap: 8px; min-height: var(--tap); text-decoration: none; font-size: var(--fs-body);
+    overflow-wrap: anywhere; transition: color var(--dur-fast) var(--ease-out);
+  }
+  .footer__channels a:hover, .footer__social a:hover { color: var(--color-accent); }
+  .footer__side { display: grid; gap: var(--s-2); align-content: start; }
+  .footer__addr { color: var(--color-muted-dark); max-width: 22rem; font-size: var(--fs-body); }
+  .footer__social { display: flex; flex-wrap: wrap; column-gap: var(--s-3); }
+  .footer__legal { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-1) var(--s-3); color: var(--color-muted-dark); border-top: 1px solid var(--color-plate); padding-top: var(--s-3); }
+  @media (min-width: 768px) {
+    .footer__in { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+    .footer__logo { grid-column: 1 / -1; }
+    .footer__legal { grid-column: 1 / -1; }
+  }
+  @media (min-width: 1024px) {
+    .footer__in { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr); }
+    .footer__logo { grid-column: auto; }
+  }
+</style>

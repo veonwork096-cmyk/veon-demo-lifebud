@@ -1,0 +1,59 @@
+/* Shared client styles for «Лайфбуд»: type, buttons, focus, FutureLink look. Values only through tokens.css. */
+body { font-size: var(--fs-body); font-synthesis: none; }
+::selection { background: var(--color-lime); color: var(--color-graphite); }
+html { scrollbar-color: var(--color-muted) var(--color-gray); }
+h1, h2, h3 { font-family: var(--font-display); margin: 0; text-wrap: balance; }
+h2 { font-size: var(--fs-h2); line-height: var(--lh-h2); font-weight: 700; font-variation-settings: var(--sharp); letter-spacing: -.01em; }
+h3 { font-size: var(--fs-h3); line-height: var(--lh-h3); font-weight: 700; }
+p { margin: 0; }
+a { text-underline-offset: .2em; }
+
+/* focus: graphite ring on light and lime fields, bright lime on graphite (concept.md §8.4) */
+:focus-visible { outline: 3px solid var(--focus, var(--color-graphite)); outline-offset: 2px; transition: none; }
+.on-dark { --focus: var(--color-accent); color: var(--color-white); }
+
+.section { padding-block: var(--section-y); }
+.section__head { display: grid; gap: var(--s-2); margin-bottom: var(--s-5); max-width: 60rem; }
+.muted { color: var(--color-muted); }
+.on-dark .muted { color: var(--color-muted-dark); }
+
+/* buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: var(--btn-h); padding: 0 24px; border-radius: var(--radius);
+  font-family: var(--font-body); font-weight: 600; font-size: var(--fs-body); line-height: 1.2; text-decoration: none; text-align: center;
+  border: var(--line) solid transparent; cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+}
+.btn:active { transform: scale(.98); }
+.btn:disabled, .btn[aria-disabled="true"] { cursor: not-allowed; }
+.btn .icon { transition: transform var(--dur-fast) var(--ease-out); }
+.btn:hover .icon--move, .btn:focus-visible .icon--move { transform: translateX(4px); }
+.btn--dark { background: var(--color-graphite); color: var(--color-white); }
+.btn--dark:hover { background: var(--color-plate); }
+.btn--accent { background: var(--color-accent); color: var(--color-accent-ink); }
+.btn--accent:hover { background: var(--color-lime); }
+.btn--line { border-color: var(--color-graphite); color: var(--color-graphite); background: transparent; }
+.btn--line:hover { background: var(--color-graphite); color: var(--color-white); }
+.btn--ghost-dark { border-color: var(--color-muted-dark); color: var(--color-white); background: transparent; }
+.btn--ghost-dark:hover { border-color: var(--color-accent); color: var(--color-accent); }
+
+/* secondary action: text link, 2 px underline */
+.text-link {
+  display: inline-flex; align-items: center; min-height: var(--tap); font-weight: 600;
+  text-decoration: underline; text-decoration-thickness: var(--line); text-underline-offset: .3em;
+  transition: text-decoration-color var(--dur-fast) var(--ease-out);
+}
+.text-link:hover { text-decoration-color: transparent; }
+
+/* FutureLink: calm inactive state with a note (demo.md §6) */
+.future-link { color: inherit; text-decoration: none; }
+.future-link__note[aria-hidden="true"] { background: var(--color-graphite); color: var(--color-white); font-family: var(--font-body); font-weight: 400; }
+.on-dark .future-link__note[aria-hidden="true"] { background: var(--color-white); color: var(--color-graphite); }
+.fl-quiet { min-height: var(--tap); color: var(--color-muted); text-decoration: underline dotted; text-underline-offset: .3em; }
+.on-dark .fl-quiet { color: var(--color-muted-dark); }
+
+/* phones: leave room for the fixed bar so it never covers card captions (I-022) */
+@media (max-width: 767px) {
+  body { padding-bottom: var(--bar-h); }
+}

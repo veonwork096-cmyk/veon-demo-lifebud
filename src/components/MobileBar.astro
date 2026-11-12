@@ -1,0 +1,28 @@
+---
+// Phones only: «Подзвонити», Viber, Telegram fixed at the bottom (R-012, I-022). body keeps padding for it (site.css).
+import Icon from "./Icon.astro";
+import { TEL, VIBER, TELEGRAM } from "../data/site";
+---
+<nav class="mbar on-dark" aria-label="Швидкий зв'язок" data-rec="R-012,G-R003">
+  <a href={TEL}><Icon name="phone" />Подзвонити</a>
+  <a href={VIBER}><Icon name="viber" />Viber</a>
+  <a href={TELEGRAM}><Icon name="telegram" />Telegram</a>
+</nav>
+<style>
+  .mbar {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+    height: var(--bar-h); padding-bottom: env(safe-area-inset-bottom, 0px);
+    background: var(--color-graphite); border-top: 1px solid var(--color-plate);
+  }
+  a {
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+    min-height: 56px; font-size: var(--fs-small); font-weight: 600; text-decoration: none; color: var(--color-white);
+    transition: color var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+  }
+  a + a { border-left: 1px solid var(--color-plate); }
+  a:first-child { color: var(--color-accent); }
+  a:active { transform: scale(.98); }
+  a:focus-visible { outline-offset: -4px; }
+  @media (min-width: 768px) { .mbar { display: none; } }
+</style>

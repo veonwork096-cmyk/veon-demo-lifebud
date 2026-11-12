@@ -1,0 +1,23 @@
+---
+// Line icons, 2 px stroke like the logo outline (replaces Font Awesome, R-006). Always used next to a word.
+type Name = "phone" | "viber" | "telegram" | "whatsapp" | "mail" | "pin" | "instagram" | "facebook" | "arrow" | "plus" | "close" | "map";
+interface Props { name: Name; size?: number; class?: string; }
+const { name, size = 22, class: cls } = Astro.props;
+---
+<svg class:list={["icon", cls]} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" data-rec="R-006">
+  {name === "phone" && <path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2" />}
+  {name === "viber" && <><path d="M8 3h8a5 5 0 0 1 5 5v4a5 5 0 0 1-5 5h-4l-4 4v-4.3A5 5 0 0 1 3 12V8a5 5 0 0 1 5-5Z" /><path d="M8.6 7.6c.3-.3.7-.3.9 0l.8 1c.2.3.2.6 0 .9l-.4.4a4.6 4.6 0 0 0 2.2 2.2l.4-.4c.3-.2.6-.2.9 0l1 .8c.3.2.3.6 0 .9-.9.9-2.1.8-3.3.1A7.4 7.4 0 0 1 8.5 11c-.7-1.2-.8-2.4.1-3.4Z" /><path d="M13.5 6.5a3.5 3.5 0 0 1 3 3M13.5 8.5a1.5 1.5 0 0 1 1 1" /></>}
+  {name === "telegram" && <><path d="m21 4-18 7.2 6.3 2.3L18 7.5l-6.6 7.7L17.5 20 21 4Z" /><path d="M9.3 13.5V19l2.6-3.3" /></>}
+  {name === "whatsapp" && <><path d="M4 20l1.3-4A8.5 8.5 0 1 1 8.4 19L4 20Z" /><path d="M9 8.5c.2-.5.6-.5.9-.5l.9 2-.6.9a5 5 0 0 0 2.9 2.9l.9-.6 2 .9c0 .3 0 .7-.5.9-1.5.8-3.7-.1-5.3-1.7S8.2 10 9 8.5Z" /></>}
+  {name === "mail" && <><rect x="3" y="5" width="18" height="14" rx="1" /><path d="m3 7 9 6 9-6" /></>}
+  {name === "pin" && <><path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12Z" /><circle cx="12" cy="9" r="2.5" /></>}
+  {name === "instagram" && <><rect x="3.5" y="3.5" width="17" height="17" rx="5" /><circle cx="12" cy="12" r="4" /><path d="M17 7h.01" /></>}
+  {name === "facebook" && <path d="M14 21v-8h3l.5-3.5H14V7.8c0-1 .3-1.8 1.8-1.8h1.8V3a24 24 0 0 0-2.6-.1c-2.6 0-4.3 1.6-4.3 4.5v2.1H7.7V13h3v8" />}
+  {name === "arrow" && <path d="M5 12h14m-5-5 5 5-5 5" />}
+  {name === "plus" && <path d="M12 5v14M5 12h14" />}
+  {name === "close" && <path d="M6 6l12 12M18 6 6 18" />}
+  {name === "map" && <><path d="M3 6.5 9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20V6.5Z" /><path d="M9 4v13.5M15 6.5V20" /></>}
+</svg>
+<style>
+  .icon { flex: none; display: block; }
+</style>

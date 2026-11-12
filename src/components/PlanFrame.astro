@@ -1,0 +1,28 @@
+---
+// Plan of КМ «Сонячний» (client image) with plot highlights on top. Plot rectangles are in % of the image,
+// set by hand only for codes readable on the plan (data/site.ts). Highlight = opacity on a layer (motion 2).
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import { houses } from "../data/site";
+
+interface Props { src: ImageMetadata; widths: number[]; sizes: string; class?: string; eager?: boolean; }
+const { src, widths, sizes, class: cls, eager = false } = Astro.props;
+const withPlots = houses.filter((h) => h.plots.length);
+---
+<div class:list={["plan-frame", cls]}>
+  <Image src={src} widths={widths} sizes={sizes} format="webp" quality={80} alt="Генеральний план КМ «Сонячний»: ділянки з кодами будинків, вулиці Друзів, Вербова, Шкільна" loading={eager ? "eager" : "lazy"} data-rec="R-003,R-004" />
+  {withPlots.map((h) => h.plots.map((p) => (
+    <span class="plot" data-plot={h.slug} style={`left:${p[0]}%;top:${p[1]}%;width:${p[2]}%;height:${p[3]}%`} aria-hidden="true"></span>
+  )))}
+</div>
+<style>
+  .plan-frame { position: relative; }
+  .plan-frame :global(img) { width: 100%; height: auto; background: var(--color-plate); }
+  .plot {
+    position: absolute; pointer-events: none; opacity: 0;
+    background: var(--color-plot-fill); outline: 3px solid var(--color-accent); outline-offset: -3px;
+    transition: opacity var(--dur-fast) var(--ease-out);
+  }
+  .plot.is-on { opacity: 1; }
+  @media (prefers-reduced-motion: reduce) { .plot { transition: none; } }
+</style>

@@ -1,5 +1,6 @@
 ---
 import { Image } from "astro:assets";
+import geoFont from "../assets/fonts/geologica-cyrillic.woff2?url";
 import Base from "../layouts/Base.astro";
 import Section from "../components/Section.astro";
 import Header from "../components/Header.astro";
@@ -17,6 +18,7 @@ import {
   wa, projectsLead, projectsMore, houses, prices,
 } from "../data/site";
 
+const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 const title = "Будинок під ключ у Вишгородському районі — Лайфбуд";
 const description = "Будинки під ключ у Вишгородському районі: виконані проєкти «Лайфбуд», ціни від 550 у.о./м², КМ «Сонячний» за 12 км від Києва. Телефон і Viber.";
 
@@ -40,9 +42,9 @@ const ld = {
 ---
 <Base lang="uk" title={title} description={description}>
   <Fragment slot="head">
-    <link rel="preload" href="/fonts/geologica-cyrillic.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="icon" href="/favicon.png" type="image/png" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preload" href={geoFont} as="font" type="font/woff2" crossorigin />
+    <link rel="icon" href={`${base}favicon.png`} type="image/png" />
+    <link rel="apple-touch-icon" href={`${base}apple-touch-icon.png`} />
     <meta name="theme-color" content="#2D2D2D" />
     <script type="application/ld+json" set:html={JSON.stringify(ld)} />
   </Fragment>
